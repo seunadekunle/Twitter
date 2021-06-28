@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -84,9 +85,14 @@ public class TimelineActivity extends AppCompatActivity {
         return true;
     }
 
-    public void onLogOutClicked() {
+    private void onLogOutClicked() {
         client.clearAccessToken();  // forgets who has logged in
         finish();
+    }
+
+    private void goToCompose() {
+        Intent i = new Intent(this, ComposeActivity.class);
+        startActivity(i);
     }
 
     @Override
@@ -95,9 +101,11 @@ public class TimelineActivity extends AppCompatActivity {
             case R.id.logOut:
                 onLogOutClicked();
             default:
-                Toast.makeText(this, "clicked,", Toast.LENGTH_SHORT).show();
+                goToCompose();
 
         }
         return true;
     }
+
+
 }
