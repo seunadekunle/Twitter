@@ -32,9 +32,7 @@ public class Tweet {
             mediaUrl = "";
         }
         else {
-            mediaUrl = String.valueOf(jsonObject1.getJSONArray("media").getJSONObject(0).getString("media_url"));
-            mediaUrl = mediaUrl.substring(7);
-            mediaUrl = "https://" + mediaUrl;
+            mediaUrl = String.valueOf(jsonObject1.getJSONArray("media").getJSONObject(0).getString("media_url_https"));
         }
 
         Log.i("entities", mediaUrl);
