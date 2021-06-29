@@ -7,8 +7,8 @@
     <string name="intent_scheme">oauth</string>
     <string name="intent_host">cprest</string>
     <string name="tweet_text">Tweet</string>
-    <string name="et_placeholder">What\'s Up?</string>
+    <string name="et_placeholder">What\'s Happening?</string>
     <string name="too_long_tweet">Sorry your tweet is too long</string>
-    <string name="too_short_tweet">Sorry your tweet cannot be emtpy</string>
+    <string name="too_short_tweet">Sorry your tweet cannot be empty</string>
 
 </resources>

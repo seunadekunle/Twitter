@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ public class TimelineActivity extends AppCompatActivity {
     RecyclerView rvTweets;
     List<Tweet> tweets;
     TweetsAdapter adapter;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +46,10 @@ public class TimelineActivity extends AppCompatActivity {
         // creates new client
         client = TwitterApp.getRestClient(this);
 
-        // find recycler view
+        // finds recycler view
         rvTweets = findViewById(R.id.rvTweets);
+        // gets swipelayour
+        swipeRefreshLayout = findViewById(R.id.swipeContainer);
 
         // initialize tweets with adapter
         tweets = new ArrayList<>();
@@ -55,10 +59,18 @@ public class TimelineActivity extends AppCompatActivity {
         rvTweets.setLayoutManager(new LinearLayoutManager(this));
         rvTweets.setAdapter(adapter);
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // refreshes the recycler view
+                populateHomeTimeline();
+            }
+        });
+
         populateHomeTimeline();
     }
 
-    // populates twitter timeline with data using recyclerviews
+    // populates twitter timeline with data using recyclerview
     private void populateHomeTimeline() {
         client.getHomeTimeline(new JsonHttpResponseHandler() {
 
@@ -68,10 +80,15 @@ public class TimelineActivity extends AppCompatActivity {
                 Log.i(TAG, "onSuccess" + json.toString());
                 JSONArray jsonArray = json.jsonArray;
                 try {
+                    // clears out tweets array
+                    adapter.clear();
                     // prevents memory issues
                     tweets.addAll(Tweet.fromJsonArray(jsonArray));
+
                     // notify adapter that list has change
                     adapter.notifyDataSetChanged();
+                    // signal that the refreshing is completed
+                    swipeRefreshLayout.setRefreshing(false);
                 } catch (JSONException e) {
                     Log.e(TAG, "Json exception");
                     e.printStackTrace();
@@ -130,7 +147,11 @@ public class TimelineActivity extends AppCompatActivity {
     // if the logout button is clicked
     private void onLogOutClicked() {
         client.clearAccessToken();  // forgets who has logged in
-        finish();
+
+        // start new intent and clear the stack
+        Intent intent = new Intent(TimelineActivity.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
     // creates intent to go to compose page

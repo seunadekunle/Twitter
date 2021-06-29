@@ -27,7 +27,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     Context context;
     List<Tweet> tweets;
 
-    public TweetsAdapter(Context context, List<Tweet> tweets){
+    public TweetsAdapter(Context context, List<Tweet> tweets) {
         this.context = context;
         this.tweets = tweets;
     }
@@ -52,16 +52,24 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         holder.bind(tweet);
     }
 
-    // Bind values based on pos(rv will inform)
+    // Returns item count
     @Override
     public int getItemCount() {
         return tweets.size();
+    }
+
+
+    // clears tweet array and notifies adapter
+    public void clear() {
+        tweets.clear();
+        notifyDataSetChanged();
     }
 
     // define viewholder
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView ivProfileImage;
+        ImageView ivMedia;
         TextView tvBody;
         TextView tvScreenName;
         TextView tvTimeStamp;
@@ -71,18 +79,25 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             super(itemView);
 
             ivProfileImage = itemView.findViewById(R.id.ivProfile);
+            ivMedia = itemView.findViewById(R.id.ivMedia);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvTimeStamp = itemView.findViewById(R.id.tvTimeStamp);
         }
 
+        // fills ul elements with data
         public void bind(Tweet tweet) {
             tvBody.setText(tweet.body);
             tvScreenName.setText(tweet.user.screenName);
             tvTimeStamp.setText(getRelativeTimeAgo(tweet.createdAt));
             Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
+
+            if (tweet.mediaUrl != "")
+                Glide.with(context).load(tweet.mediaUrl).into(ivMedia);
         }
 
+        // helper function to return relative timestamp
+        // gotten from https://gist.github.com/nesquena/f786232f5ef72f6e10a7
         public String getRelativeTimeAgo(String rawJsonDate) {
             String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
             SimpleDateFormat sf = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
