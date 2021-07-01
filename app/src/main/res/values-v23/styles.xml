@@ -8,5 +8,8 @@
             backward-compatibility can go here.
         -->
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:colorAccent">@color/blue</item>
+        <item name="colorPrimaryDark">@color/extra_light_grey</item>
+
     </style>
 </resources>

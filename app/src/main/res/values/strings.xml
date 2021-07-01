@@ -8,7 +8,12 @@
     <string name="intent_host">cprest</string>
     <string name="tweet_text">Tweet</string>
     <string name="et_placeholder">What\'s Happening?</string>
-    <string name="too_long_tweet">Sorry your tweet is too long</string>
-    <string name="too_short_tweet">Sorry your tweet cannot be empty</string>
+    <string name="too_long_tweet">Sorry, your tweet is too long</string>
+    <string name="too_short_tweet">Sorry, your tweet cannot be empty</string>
+    <string name="log_out">Log Out</string>
+    <string name="compose">Compose</string>
+    <string name="post_error">"Can't post tweet</string>
+    <string name="tweet_image">Tweet image</string>
+
 
 </resources>

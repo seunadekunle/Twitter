@@ -6,12 +6,14 @@
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         -->
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:colorAccent">@color/blue</item>
+        <item name="colorPrimaryDark">@color/extra_light_grey</item>
     </style>
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
 </resources>
