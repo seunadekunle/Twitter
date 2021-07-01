@@ -161,7 +161,7 @@ public class TimelineActivity extends AppCompatActivity implements ComposeFragme
         if (item.getItemId() == R.id.logOut) {
             onLogOutClicked();
         } else {
-            goToCompose();
+            goToCompose("Compose", "", 0, false);
         }
         return true;
     }
@@ -185,9 +185,9 @@ public class TimelineActivity extends AppCompatActivity implements ComposeFragme
     }
 
     // goes to compose fragment
-    private void goToCompose() {
+    private void goToCompose(String titleName, String screenName, long id, boolean reply) {
         FragmentManager fm = getSupportFragmentManager();
-        ComposeFragment createTweetFragment = ComposeFragment.newInstance("Compose");
+        ComposeFragment createTweetFragment = ComposeFragment.newInstance(titleName, screenName, id, reply);
         createTweetFragment.show(fm, "fragment_compose");
     }
 
@@ -206,7 +206,7 @@ public class TimelineActivity extends AppCompatActivity implements ComposeFragme
     }
 
     @Override
-    public void goToComposeFragment() {
-        goToCompose();
+    public void goToComposeFragment(String screenName, long id) {
+        goToCompose("Reply", screenName, id, true);
     }
 }

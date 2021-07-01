@@ -54,7 +54,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
     // interface for using reply button
     public interface OpenComposeListener{
-        void goToComposeFragment();
+        void goToComposeFragment(String screenName, long id);
     }
 
     // For each row inflate layout and create ViewHolder
@@ -135,15 +135,16 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             retweetCount.setText(shortenNum(tweet.getNumRetweets()));
             likeCount.setText(shortenNum(tweet.getNumLikes()));
 
-//            if (tweet.mediaUrl != Tweet.NO_MEDIA)
-//                Glide.with(context).load(tweet.mediaUrl).into(ivMedia);
+            // if tweet media url is valid
+            if (!tweet.getMediaUrl().equals(Tweet.NO_MEDIA)){
+                Glide.with(context)
+                        .load(tweet.getMediaUrl())
+                        .override(1000, 700)
+                        .centerCrop()
+                        .transform(new RoundedCornersTransformation(40, 0))
+                        .into(ivMedia);
 
-            Glide.with(context)
-                    .load(tweet.getMediaUrl())
-                    .override(1000, 700)
-                    .centerCrop()
-                    .transform(new RoundedCornersTransformation(40, 0))
-                    .into(ivMedia);
+            }
 
             // click listener for bottom buttons
             replyBtn.setOnClickListener(new View.OnClickListener() {
@@ -151,7 +152,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 public void onClick(View view) {
                     Log.i("tag", "reply clicked");
                     // calls interface implemented in main activity
-                    listener.goToComposeFragment();
+                    listener.goToComposeFragment(tweet.getUser().screenName, tweet.getId());
                 }
             });
 

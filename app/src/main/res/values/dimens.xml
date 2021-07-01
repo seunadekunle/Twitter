@@ -9,6 +9,7 @@
     <dimen name="tweetCounts">10dp</dimen>
     <dimen name="iconsTopMargin">35dp</dimen>
     <dimen name="iconsTextTopMargin">36.5dp</dimen>
+    <dimen name="composeMargin">10dp</dimen>
 
 
 </resources>
