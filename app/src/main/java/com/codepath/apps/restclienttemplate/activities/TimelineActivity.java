@@ -37,7 +37,7 @@ import java.util.Objects;
 
 import okhttp3.Headers;
 
-public class TimelineActivity extends AppCompatActivity implements ComposeFragment.ComposeFragmentListener, TweetsAdapter.OpenComposeListener{
+public class TimelineActivity extends AppCompatActivity implements ComposeFragment.ComposeFragmentListener, TweetsAdapter.OpenComposeListener {
 
     public static final String TAG = TimelineActivity.class.getSimpleName();
     private final int REQUEST_CODE = 20;
@@ -57,6 +57,8 @@ public class TimelineActivity extends AppCompatActivity implements ComposeFragme
         // removes shadow and sets the background color of the action bar
         Objects.requireNonNull(getSupportActionBar()).setElevation(0);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.extra_light_grey)));
+
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.twitter_icon);
 
         // creates new client
         client = TwitterApp.getRestClient(this);
@@ -176,9 +178,8 @@ public class TimelineActivity extends AppCompatActivity implements ComposeFragme
     }
 
 
-
     @Override
-    public void onFinishedComposeFragment(Tweet newTweet){
+    public void onFinishedComposeFragment(Tweet newTweet) {
         // update recyclerview with new tweet
         tweets.add(0, newTweet);
 

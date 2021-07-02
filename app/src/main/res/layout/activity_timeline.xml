@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.TimelineActivity"
-    android:background="@color/extra_light_grey">
+    android:background="@color/extra_light_grey"
+    tools:context=".activities.TimelineActivity">
 
     <ProgressBar
         android:id="@+id/pbLoading"
@@ -19,8 +19,7 @@
         android:indeterminateTint="@color/blue"
         android:visibility="visible" />
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
