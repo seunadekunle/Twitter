@@ -88,7 +88,7 @@ public class ComposeFragment extends DialogFragment {
         // Fetch arguments from bundle and set title
         String title = getArguments().getString("title", "Compose");
         String mentions = getArguments().getString("mentions", "");
-        boolean reply =  getArguments().getBoolean("reply", false);
+        boolean reply = getArguments().getBoolean("reply", false);
         long id = getArguments().getLong("id", 0);
 
         getDialog().setTitle(title);
@@ -145,8 +145,7 @@ public class ComposeFragment extends DialogFragment {
                     });
                 }
             });
-        }
-        else {
+        } else {
             // add the tweet author mentions in the reply
             etCompose.setText(String.format("@%s", mentions) + " ");
             // sets the cursor of the edittext to be after the mentions
@@ -219,11 +218,10 @@ public class ComposeFragment extends DialogFragment {
     @Override
     public void onAttach(@NonNull @NotNull Context context) {
         super.onAttach(context);
-        if(context instanceof ComposeFragmentListener){
+        if (context instanceof ComposeFragmentListener) {
             Log.d(TAG, "context is a ComposeFragListener");
             listener = (ComposeFragmentListener) context;
-        }
-        else{
+        } else {
             Log.d(TAG, "The context that called this does not implement ComposeFragmentListener!");
         }
     }

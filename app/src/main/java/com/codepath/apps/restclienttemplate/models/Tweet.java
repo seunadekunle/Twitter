@@ -44,18 +44,18 @@ public class Tweet {
         Log.i("entities", mediaUrl);
         Tweet tweet = new Tweet();
 
-        tweet.id =jsonObject.getLong("id");
-        if(jsonObject.has("full_text")) {
+        tweet.id = jsonObject.getLong("id");
+        if (jsonObject.has("full_text")) {
             tweet.body = jsonObject.getString("full_text");
-        }
-        else{
+        } else {
             tweet.body = jsonObject.getString("text");
         }
 
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
         tweet.mediaUrl = mediaUrl;
-        tweet.numLikes = jsonObject.getInt("favorite_count");;
+        tweet.numLikes = jsonObject.getInt("favorite_count");
+        ;
         tweet.numRetweets = jsonObject.getInt("retweet_count");
         tweet.retweeted = jsonObject.getBoolean("retweeted");
         tweet.liked = jsonObject.getBoolean("favorited");

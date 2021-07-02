@@ -19,60 +19,60 @@ import java.util.Objects;
 
 public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 
-	SampleModelDao sampleModelDao;
-	
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_login);
+    SampleModelDao sampleModelDao;
 
-		// changes title of action bar
-		// removes shadow and sets the background color of the action bar
-		Objects.requireNonNull(getSupportActionBar()).setElevation(0);
-		getSupportActionBar().setTitle("Login");
-		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.extra_light_grey)));
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
 
-		final SampleModel sampleModel = new SampleModel();
-		sampleModel.setName("CodePath");
+        // changes title of action bar
+        // removes shadow and sets the background color of the action bar
+        Objects.requireNonNull(getSupportActionBar()).setElevation(0);
+        getSupportActionBar().setTitle("Login");
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.extra_light_grey)));
 
-		sampleModelDao = ((TwitterApp) getApplicationContext()).getMyDatabase().sampleModelDao();
+        final SampleModel sampleModel = new SampleModel();
+        sampleModel.setName("CodePath");
 
-		AsyncTask.execute(new Runnable() {
-			@Override
-			public void run() {
-				sampleModelDao.insertModel(sampleModel);
-			}
-		});
-	}
+        sampleModelDao = ((TwitterApp) getApplicationContext()).getMyDatabase().sampleModelDao();
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                sampleModelDao.insertModel(sampleModel);
+            }
+        });
+    }
 
 
-	// Inflate the menu; this adds items to the action bar if it is present.
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.login, menu);
-		return true;
-	}
+    // Inflate the menu; this adds items to the action bar if it is present.
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.login, menu);
+        return true;
+    }
 
-	// OAuth authenticated successfully, launch primary authenticated activity
-	// i.e Display application "homepage"
-	@Override
-	public void onLoginSuccess() {
-		 Intent i = new Intent(this, TimelineActivity.class);
-		 startActivity(i);
-	}
+    // OAuth authenticated successfully, launch primary authenticated activity
+    // i.e Display application "homepage"
+    @Override
+    public void onLoginSuccess() {
+        Intent i = new Intent(this, TimelineActivity.class);
+        startActivity(i);
+    }
 
-	// OAuth authentication flow failed, handle the error
-	// i.e Display an error dialog or toast
-	@Override
-	public void onLoginFailure(Exception e) {
-		e.printStackTrace();
-	}
+    // OAuth authentication flow failed, handle the error
+    // i.e Display an error dialog or toast
+    @Override
+    public void onLoginFailure(Exception e) {
+        e.printStackTrace();
+    }
 
-	// Click handler method for the button used to start OAuth flow
-	// Uses the client to initiate OAuth authorization
-	// This should be tied to a button used to login
-	public void loginToRest(View view) {
-		getClient().connect();
-	}
+    // Click handler method for the button used to start OAuth flow
+    // Uses the client to initiate OAuth authorization
+    // This should be tied to a button used to login
+    public void loginToRest(View view) {
+        getClient().connect();
+    }
 
 }

@@ -17,6 +17,7 @@ public class User {
     public User() {
 
     }
+
     // returns User Object from function
     public static User fromJson(JSONObject jsonObject) throws JSONException {
         User user = new User();

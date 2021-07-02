@@ -53,7 +53,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     }
 
     // interface for using reply button
-    public interface OpenComposeListener{
+    public interface OpenComposeListener {
         void goToComposeFragment(String screenName, long id);
     }
 
@@ -156,7 +156,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             });
 
             // change state of retweet button based if tweet is like or not
-            if (tweet.isRetweeted()){
+            if (tweet.isRetweeted()) {
                 retweetBtn.setSelected(true);
             }
 
@@ -211,7 +211,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             });
 
             // change state of like button based if tweet is like or not
-            if (tweet.isLiked()){
+            if (tweet.isLiked()) {
                 likeBtn.setSelected(true);
             }
 
