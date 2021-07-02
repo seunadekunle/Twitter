@@ -124,27 +124,26 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
         // fills ul elements with data
         public void bind(Tweet tweet) {
-            Glide.with(context).load(tweet.getUser().profileImageUrl)
+
+            Glide.with(context)
+                    .load(tweet.getUser().getProfileImageUrl())
                     .centerCrop()
                     .transform(new RoundedCornersTransformation(100, 0))
                     .into(ivProfileImage);
 
             tvBody.setText(tweet.getBody());
-            tvScreenName.setText(tweet.getUser().name);
+            tvScreenName.setText(tweet.getUser().getName());
             tvTimeStamp.setText(getRelativeTimeAgo(tweet.getCreatedAt()));
             retweetCount.setText(shortenNum(tweet.getNumRetweets()));
             likeCount.setText(shortenNum(tweet.getNumLikes()));
 
             // if tweet media url is valid
-            if (!tweet.getMediaUrl().equals(Tweet.NO_MEDIA)){
-                Glide.with(context)
-                        .load(tweet.getMediaUrl())
-                        .override(1000, 700)
-                        .centerCrop()
-                        .transform(new RoundedCornersTransformation(40, 0))
-                        .into(ivMedia);
-
-            }
+            Glide.with(context)
+                    .load(tweet.getMediaUrl())
+                    .override(1000, 700)
+                    .centerCrop()
+                    .transform(new RoundedCornersTransformation(40, 0))
+                    .into(ivMedia);
 
             // click listener for bottom buttons
             replyBtn.setOnClickListener(new View.OnClickListener() {
@@ -152,7 +151,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 public void onClick(View view) {
                     Log.i("tag", "reply clicked");
                     // calls interface implemented in main activity
-                    listener.goToComposeFragment(tweet.getUser().screenName, tweet.getId());
+                    listener.goToComposeFragment(tweet.getUser().getScreenName(), tweet.getId());
                 }
             });
 
@@ -161,6 +160,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 retweetBtn.setSelected(true);
             }
 
+            // if retweet button is clicked
             retweetBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

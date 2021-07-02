@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate.activities;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -25,8 +26,11 @@ public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 
-		// removes shadow from login
+		// changes title of action bar
+		// removes shadow and sets the background color of the action bar
 		Objects.requireNonNull(getSupportActionBar()).setElevation(0);
+		getSupportActionBar().setTitle("Login");
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.extra_light_grey)));
 
 		final SampleModel sampleModel = new SampleModel();
 		sampleModel.setName("CodePath");

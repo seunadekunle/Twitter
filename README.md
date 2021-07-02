@@ -1,10 +1,10 @@
-# Project 2 - *Twiiter*
+# Project 3 - *Twiiter*
 
 **Twitter** is an Android Twitter client
 
 Submitted by: **Seun Adekunle**
 
-Time spent: **27.5** hours spent in total
+Time spent: **28.5** hours spent in total
 
 ## User Stories
 
@@ -19,9 +19,14 @@ The following **required** functionality is completed:
 
 The following **bonus** features are implemented:
 
-<!-- * [X] Rounded corners for images
-* [X] Improved user interface
-* [X] Allow video trailers to be played fullscreen -->
+* [X] User can like/unlike tweets from home timeline
+* [X] User can reply tweets from home timeline
+    * [X] Tweet author mentions is in reply
+* [X] User can retweet/unretweet tweets from home timeline
+* [X] Ui changes to reflect the twitter brand
+* [X] Indeterminate progress bar loads when network task happens
+* [X] All image files are replaced with drawable/vector files
+* [X] Corners are rounded for images
 
 ## Video Walkthrough
 
@@ -33,8 +38,7 @@ GIF created with [Kap](https://getkap.co/).
 
 ## Notes
 
-
-
+Requires user to login using Twitter API.
 
 ## License
 

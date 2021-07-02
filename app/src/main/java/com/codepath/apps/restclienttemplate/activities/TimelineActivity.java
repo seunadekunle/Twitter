@@ -54,8 +54,8 @@ public class TimelineActivity extends AppCompatActivity implements ComposeFragme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
 
+        // removes shadow and sets the background color of the action bar
         Objects.requireNonNull(getSupportActionBar()).setElevation(0);
-        getSupportActionBar().setIcon(R.drawable.ic_heart);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.extra_light_grey)));
 
         // creates new client
@@ -87,22 +87,6 @@ public class TimelineActivity extends AppCompatActivity implements ComposeFragme
 
         populateHomeTimeline();
 //        populateHomeWithPlace();
-    }
-
-    // data for testing ui
-    private void populateHomeWithPlace() {
-        // clears out tweets array
-        adapter.clear();
-        // prevents memory issues
-        tweets.addAll(Tweet.fromPlaceData());
-
-        // notify adapter that list has change
-        adapter.notifyDataSetChanged();
-        // signal that the refreshing is completed
-        swipeRefreshLayout.setRefreshing(false);
-
-        // hid progress bar
-        pbData.setVisibility(View.INVISIBLE);
     }
 
 

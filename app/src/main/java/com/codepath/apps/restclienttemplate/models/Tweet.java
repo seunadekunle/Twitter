@@ -150,26 +150,4 @@ public class Tweet {
     public void setLiked(boolean liked) {
         this.liked = liked;
     }
-
-    // returns a list of tweets created from a JSONArray
-    public static List<Tweet> fromPlaceData() {
-        List<Tweet> tweets = new ArrayList<>();
-
-        User testUser = new User();
-        testUser.name = "Seun";
-        testUser.profileImageUrl = "https://pbs.twimg.com/profile_images/1404334078388670466/DgO3WL4S_400x400.jpg";
-        testUser.screenName = "@bigmanseun";
-
-        Tweet test = new Tweet();
-        test.createdAt = "Wed Oct 10 20:19:24 +0000 2018";
-        test.mediaUrl = "";
-        test.user = testUser;
-
-        test.body = "To make room for more expression, we will now count all emojis as equal—including those with gender\u200D\u200D\u200D \u200D\u200Dand skin t… https://t.co/MkGjXf9aXm";
-        for (int i = 0; i < 10; i++) {
-            tweets.add(test);
-        }
-
-        return tweets;
-    }
 }
